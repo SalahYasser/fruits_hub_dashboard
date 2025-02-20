@@ -45,7 +45,7 @@ class _AddProductViewBodyState extends State<AddProductViewBody> {
                 hintText: 'Product Description',
               ),
               SizedBox(height: 60),
-              ImageField(),
+              ImageField(onFileChanged: (image) {}),
             ],
           ),
         ),
