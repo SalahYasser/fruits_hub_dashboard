@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:fruits_hub_dashboard/features/add_product/presentation/views/widgets/add_product_view_body.dart';
+import '../../../../core/helper_functions/build_app_bar.dart';
+import 'widgets/add_product_view_body.dart';
 
 class AddProductView extends StatelessWidget {
   const AddProductView({super.key});
@@ -8,7 +9,8 @@ class AddProductView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
+    return Scaffold(
+      appBar: buildAppBar(),
       body: AddProductViewBody(),
     );
   }
