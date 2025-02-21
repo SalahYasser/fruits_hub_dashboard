@@ -39,6 +39,7 @@ dependencies:
   skeletonizer: ^1.4.3
   dartz: ^0.10.1
   firebase_storage: ^12.4.3
+  path: ^1.9.1
 
 
 
