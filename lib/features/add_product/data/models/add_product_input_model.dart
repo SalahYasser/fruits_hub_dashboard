@@ -9,6 +9,12 @@ class AddProductInputModel {
   final File image;
   final bool isFeatured;
   String? imageUrl;
+  final int expirationMonths;
+  final bool isOrganic = false;
+  final int numOfCalories;
+  final int unitAmount;
+  final num avgRating = 0;
+  final num ratingCount = 0;
 
   AddProductInputModel({
     required this.name,
@@ -17,11 +23,15 @@ class AddProductInputModel {
     required this.price,
     required this.image,
     required this.isFeatured,
+    required this.expirationMonths,
+    required this.numOfCalories,
+    required this.unitAmount,
     this.imageUrl,
   });
 
   factory AddProductInputModel.fromEntity(
-      AddProductInputEntity addProductInputEntity,) {
+    AddProductInputEntity addProductInputEntity,
+  ) {
     return AddProductInputModel(
       name: addProductInputEntity.name,
       code: addProductInputEntity.code,
@@ -30,6 +40,9 @@ class AddProductInputModel {
       image: addProductInputEntity.image,
       isFeatured: addProductInputEntity.isFeatured,
       imageUrl: addProductInputEntity.imageUrl,
+      expirationMonths: addProductInputEntity.expirationMonths,
+      numOfCalories: addProductInputEntity.numOfCalories,
+      unitAmount: addProductInputEntity.unitAmount,
     );
   }
 
@@ -41,6 +54,10 @@ class AddProductInputModel {
       'price': price,
       'isFeatured': isFeatured,
       'imageUrl': imageUrl,
+      'expirationMonths': expirationMonths,
+      'numOfCalories': numOfCalories,
+      'unitAmount': unitAmount,
+      'isOrganic': isOrganic,
     };
   }
 }
