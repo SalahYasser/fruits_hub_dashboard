@@ -10,7 +10,7 @@ class AddProductInputModel {
   final bool isFeatured;
   String? imageUrl;
   final int expirationMonths;
-  final bool isOrganic = false;
+  final bool isOrganic;
   final int numOfCalories;
   final int unitAmount;
   final num avgRating = 0;
@@ -26,6 +26,7 @@ class AddProductInputModel {
     required this.expirationMonths,
     required this.numOfCalories,
     required this.unitAmount,
+    this.isOrganic = false,
     this.imageUrl,
   });
 
@@ -43,6 +44,7 @@ class AddProductInputModel {
       expirationMonths: addProductInputEntity.expirationMonths,
       numOfCalories: addProductInputEntity.numOfCalories,
       unitAmount: addProductInputEntity.unitAmount,
+      isOrganic: addProductInputEntity.isOrganic,
     );
   }
 
