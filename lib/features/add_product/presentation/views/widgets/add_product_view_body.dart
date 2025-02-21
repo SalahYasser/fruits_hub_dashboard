@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fruits_hub_dashboard/core/widgets/custom_button.dart';
 import 'package:fruits_hub_dashboard/features/add_product/domain/entities/add_product_input/add_product_input_entity.dart';
+import 'package:fruits_hub_dashboard/features/add_product/domain/entities/review/review_entity.dart';
 import 'package:fruits_hub_dashboard/features/add_product/presentation/manger/cubits/add_product_cubit/add_product_cubit.dart';
 import 'package:fruits_hub_dashboard/features/add_product/presentation/views/widgets/is_featured_check_box.dart';
 
@@ -121,6 +122,16 @@ class _AddProductViewBodyState extends State<AddProductViewBody> {
                     if (formKey.currentState!.validate()) {
                       formKey.currentState!.save();
                       AddProductInputEntity input = AddProductInputEntity(
+                        reviews: [
+                          ReviewEntity(
+                            name: 'Salah',
+                            image:
+                            'https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.pexels.com%2Fsearch%2Fbeautiful%2F&psig=AOvVaw19xjUBre0RXfV2IZ-cEAEV&ust=1726749821993000&source=images&cd=vfe&opi=89978449&ved=0CBEQjRxqFwoTCPCJ3L_CzIgDFQAAAAAdAAAAABAE',
+                            rating: 5,
+                            date: DateTime.now().toIso8601String(),
+                            reviewDescription: 'Nice product',
+                          )
+                        ],
                         name: name,
                         code: code,
                         description: description,
