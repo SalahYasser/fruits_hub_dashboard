@@ -9,7 +9,7 @@ class FireStorage implements StorageService {
   final storageReference = FirebaseStorage.instance.ref();
 
   @override
-  Future<String> uploadImage(String path, File file) async {
+  Future<String> uploadFile(File file, String path) async {
 
     String fileName = b.basename(file.path);
     String extension = b.extension(file.path);
