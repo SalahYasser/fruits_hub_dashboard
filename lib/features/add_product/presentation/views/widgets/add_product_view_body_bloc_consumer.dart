@@ -17,7 +17,7 @@ class AddProductViewBodyBlocConsumer extends StatelessWidget {
           buildBar(context, 'Product added successfully');
         }
         if (state is AddProductFailure) {
-          buildBar(context, state.message);
+          buildBar(context, state.errMessage);
         }
       },
       builder: (context, state) {

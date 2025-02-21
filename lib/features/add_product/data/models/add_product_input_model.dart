@@ -8,7 +8,7 @@ class AddProductInputModel {
   final num price;
   final File image;
   final bool isFeatured;
-  final String? imageUrl;
+  String? imageUrl;
 
   AddProductInputModel({
     required this.name,
@@ -21,8 +21,7 @@ class AddProductInputModel {
   });
 
   factory AddProductInputModel.fromEntity(
-    AddProductInputEntity addProductInputEntity,
-  ) {
+      AddProductInputEntity addProductInputEntity,) {
     return AddProductInputModel(
       name: addProductInputEntity.name,
       code: addProductInputEntity.code,
@@ -34,12 +33,14 @@ class AddProductInputModel {
     );
   }
 
-  toJson() => {
-    'name': name,
-    'code': code,
-    'description': description,
-    'price': price,
-    'isFeatured': isFeatured,
-    'imageUrl': imageUrl,
-  };
+  toJson() {
+    return {
+      'name': name,
+      'code': code,
+      'description': description,
+      'price': price,
+      'isFeatured': isFeatured,
+      'imageUrl': imageUrl,
+    };
+  }
 }
