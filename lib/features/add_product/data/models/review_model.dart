@@ -1,3 +1,5 @@
+import '../../domain/entities/review/review_entity.dart';
+
 class ReviewModel {
   final String name;
   final String image;
@@ -13,13 +15,13 @@ class ReviewModel {
     required this.rating,
   });
 
-  factory ReviewModel.fromEntity(ReviewModel reviewModel) {
+  factory ReviewModel.fromEntity(ReviewEntity reviewEntity) {
     return ReviewModel(
-      name: reviewModel.name,
-      image: reviewModel.image,
-      date: reviewModel.date,
-      reviewDescription: reviewModel.reviewDescription,
-      rating: reviewModel.rating,
+      name: reviewEntity.name,
+      image: reviewEntity.image,
+      date: reviewEntity.date,
+      reviewDescription: reviewEntity.reviewDescription,
+      rating: reviewEntity.rating,
     );
   }
 
