@@ -1,5 +1,7 @@
 class BackendEndpoint {
 
+  static const addProduct = 'products';
+
   static const images = 'images';
 
   static const addUserData = 'users';
