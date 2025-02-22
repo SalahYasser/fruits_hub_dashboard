@@ -17,6 +17,7 @@ class ProductModel {
   final int unitAmount;
   final num avgRating = 0;
   final num ratingCount = 0;
+  final num sellingCount;
   final List<ReviewModel> reviews;
 
   ProductModel({
@@ -29,6 +30,7 @@ class ProductModel {
     required this.expirationMonths,
     required this.numOfCalories,
     required this.unitAmount,
+    this.sellingCount = 0,
     this.isOrganic = false,
     this.imageUrl,
     required this.reviews,
@@ -67,6 +69,7 @@ class ProductModel {
       'numOfCalories': numOfCalories,
       'unitAmount': unitAmount,
       'isOrganic': isOrganic,
+      'sellingCount': sellingCount,
       'reviews': reviews.map((e) => e.toJson()).toList(),
     };
   }
