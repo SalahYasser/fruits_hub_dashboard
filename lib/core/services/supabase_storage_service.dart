@@ -1,11 +1,10 @@
 import 'dart:io';
-
+import 'package:path/path.dart' as b;
 import 'package:fruits_hub_dashboard/core/services/storage_service.dart';
 import 'package:fruits_hub_dashboard/core/utils/app_api_keys.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 class SupabaseStorageService implements StorageService {
-
   static late Supabase _supabase;
 
   static initSupabase() async {
@@ -15,9 +14,16 @@ class SupabaseStorageService implements StorageService {
     );
   }
 
-
   @override
-  Future<String> uploadFile(File file, String path) {
+  Future<String> uploadFile(File file, String path) async {
 
+    String fileName = b.basename(file.path);
+    String extension = b.extension(file.path);
+
+    var result = await _supabase.client.storage
+        .from('fruits_images')
+        .upload('$path/$fileName.$extension', file);
+
+    return result;
   }
 }
