@@ -4,8 +4,14 @@ import 'package:fruits_hub_dashboard/core/services/storage_service.dart';
 import 'package:fruits_hub_dashboard/core/utils/app_api_keys.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
+import '../../constants.dart';
+
 class SupabaseStorageService implements StorageService {
   static late Supabase _supabase;
+
+  static createBucketName(String bucketName) {
+    _supabase.client.storage.createBucket(bucketName);
+  }
 
   static initSupabase() async {
     _supabase = await Supabase.initialize(
@@ -21,7 +27,7 @@ class SupabaseStorageService implements StorageService {
     String extension = b.extension(file.path);
 
     var result = await _supabase.client.storage
-        .from('fruits_images')
+        .from(kBucketName)
         .upload('$path/$fileName.$extension', file);
 
     return result;
