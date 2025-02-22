@@ -4,8 +4,8 @@ import 'package:fruits_hub_dashboard/core/repos/product_repo/products_repo.dart'
 import 'package:fruits_hub_dashboard/core/services/database_service.dart';
 import 'package:fruits_hub_dashboard/core/utils/backend_endpoint.dart';
 
-import '../../../features/add_product/data/models/add_product_input_model.dart';
-import '../../../features/add_product/domain/entities/add_product_input/add_product_input_entity.dart';
+import '../../../features/add_product/data/models/ProductModel.dart';
+import '../../../features/add_product/domain/entities/add_product_input/ProductEntity.dart';
 
 class ProductsRepoImpl implements ProductsRepo {
   final DataBaseService dataBaseService;
@@ -14,12 +14,12 @@ class ProductsRepoImpl implements ProductsRepo {
 
   @override
   Future<Either<Failure, void>> addProduct(
-    AddProductInputEntity addProductInputEntity,
+    ProductEntity addProductInputEntity,
   ) async {
     try {
       await dataBaseService.addData(
         path: BackendEndpoint.addProductCollection,
-        data: AddProductInputModel.fromEntity(addProductInputEntity).toJson(),
+        data: ProductModel.fromEntity(addProductInputEntity).toJson(),
       );
 
       return const Right(null);
