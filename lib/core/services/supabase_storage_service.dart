@@ -9,8 +9,22 @@ import '../../constants.dart';
 class SupabaseStorageService implements StorageService {
   static late Supabase _supabase;
 
-  static createBucketName(String bucketName) {
-    _supabase.client.storage.createBucket(bucketName);
+  static createBuckets(String bucketName) async {
+
+    var buckets = await _supabase.client.storage.listBuckets();
+
+    bool isBucketExists = false;
+
+    for (var bucket in buckets) {
+      if (bucket.id == bucketName) {
+        isBucketExists = true;
+        break;
+      }
+    }
+
+    if (!isBucketExists) {
+      await _supabase.client.storage.createBucket(bucketName);
+    }
   }
 
   static initSupabase() async {
@@ -22,7 +36,6 @@ class SupabaseStorageService implements StorageService {
 
   @override
   Future<String> uploadFile(File file, String path) async {
-
     String fileName = b.basename(file.path);
     String extension = b.extension(file.path);
 
