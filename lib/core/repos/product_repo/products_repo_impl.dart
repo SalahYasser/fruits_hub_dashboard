@@ -4,7 +4,7 @@ import 'package:fruits_hub_dashboard/core/repos/product_repo/products_repo.dart'
 import 'package:fruits_hub_dashboard/core/services/database_service.dart';
 import 'package:fruits_hub_dashboard/core/utils/backend_endpoint.dart';
 
-import '../../../features/add_product/data/models/ProductModel.dart';
+import '../../../features/add_product/data/models/product_model.dart';
 import '../../../features/add_product/domain/entities/add_product_input/ProductEntity.dart';
 
 class ProductsRepoImpl implements ProductsRepo {
