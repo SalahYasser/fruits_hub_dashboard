@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 
 import '../../../data/models/order_model.dart';
 
-class OrderItemWidget extends StatelessWidget {
+class OrderItem extends StatelessWidget {
   final OrderModel orderModel;
 
-  const OrderItemWidget({super.key, required this.orderModel});
+  const OrderItem({super.key, required this.orderModel});
 
   @override
   Widget build(BuildContext context) {
