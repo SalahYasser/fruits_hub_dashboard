@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
-AppBar buildAppBar() {
+AppBar buildAppBar(String title) {
   return AppBar(
-    title: const Text('Add Product'),
+    title: Text(title),
     centerTitle: true,
     elevation: 0,
   );
