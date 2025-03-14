@@ -22,7 +22,7 @@ void setupGetIt() {
   );
 
 
-  getIt.registerSingleton<DataBaseService>(FirestoreService());
+  getIt.registerSingleton<DataBaseService>(FireStoreService());
 
   getIt.registerSingleton<ProductsRepo>(
     ProductsRepoImpl(getIt.get<DataBaseService>()),
