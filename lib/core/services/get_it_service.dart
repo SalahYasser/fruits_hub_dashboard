@@ -13,23 +13,45 @@ import 'firestore_service.dart';
 
 final getIt = GetIt.instance;
 
+// void setupGetIt() {
+//
+//   // getIt.registerSingleton<StoarageService>(SupabaseStoargeService());
+//   // getIt.registerSingleton<DatabaseService>(FireStoreService());
+//
+//   // getIt.registerSingleton<StorageService>(FireStorage());
+//
+//   getIt.registerSingleton<StorageService>(SupabaseStorageService());
+//
+//   getIt.registerSingleton<ImagesRepo>(
+//     ImagesRepoImpl(getIt.get<StorageService>()),
+//   );
+//
+//
+//   getIt.registerSingleton<DataBaseService>(FireStoreService());
+//
+//   getIt.registerSingleton<ProductsRepo>(
+//     ProductsRepoImpl(getIt.get<DataBaseService>()),
+//   );
+//
+//
+//   getIt.registerSingleton<OrdersRepo>(
+//     OrdersRepoImpl(getIt.get<DataBaseService>()),
+//   );
+// }
+
 void setupGetIt() {
 
-  getIt.registerSingleton<StorageService>(FireStorage());
-
-  // getIt.registerSingleton<StorageService>(SupabaseStorageService());
+  getIt.registerSingleton<StorageService>(SupabaseStorageService());
 
   getIt.registerSingleton<ImagesRepo>(
     ImagesRepoImpl(getIt.get<StorageService>()),
   );
-
 
   getIt.registerSingleton<DataBaseService>(FireStoreService());
 
   getIt.registerSingleton<ProductsRepo>(
     ProductsRepoImpl(getIt.get<DataBaseService>()),
   );
-
 
   getIt.registerSingleton<OrdersRepo>(
     OrdersRepoImpl(getIt.get<DataBaseService>()),

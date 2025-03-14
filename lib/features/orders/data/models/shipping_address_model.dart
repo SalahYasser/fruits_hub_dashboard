@@ -1,4 +1,3 @@
-
 import 'package:fruits_hub_dashboard/features/orders/domain/entities/data/shipping_address_entity.dart';
 
 class ShippingAddressModel {

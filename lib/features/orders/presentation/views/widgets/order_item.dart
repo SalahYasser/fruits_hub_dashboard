@@ -1,5 +1,8 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:fruits_hub_dashboard/features/orders/domain/entities/data/order_entity.dart';
+
+import '../../../../../core/enums/order_enum.dart';
 
 class OrderItem extends StatelessWidget {
   final OrderEntity orderEntity;
@@ -16,12 +19,39 @@ class OrderItem extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             // Total Price
-            Text(
-              'Total Price: \$${orderEntity.totalPrice.toStringAsFixed(2)}',
-              style: const TextStyle(
-                fontWeight: FontWeight.bold,
-                fontSize: 16,
-              ),
+            Row(
+              children: [
+                Text(
+                  'Total Price: \$${orderEntity.totalPrice.toStringAsFixed(2)}',
+                  style: const TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 16,
+                  ),
+                ),
+                const Spacer(),
+                // Order Status
+                Container(
+                  padding: const EdgeInsets.symmetric(
+                    vertical: 4,
+                    horizontal: 8,
+                  ),
+                  decoration: BoxDecoration(
+                    color:
+                        orderEntity.status == OrderEnum.pending
+                            ? Colors.amber
+                            : orderEntity.status == OrderEnum.accepted
+                            ? Colors.green
+                            : orderEntity.status == OrderEnum.delivered
+                            ? Colors.blue
+                            : Colors.red,
+                    borderRadius: BorderRadius.circular(4),
+                  ),
+                  child: Text(
+                    orderEntity.status.name,
+                    style: const TextStyle(color: Colors.white, fontSize: 12),
+                  ),
+                ),
+              ],
             ),
             const SizedBox(height: 8),
 
@@ -62,11 +92,16 @@ class OrderItem extends StatelessWidget {
               itemBuilder: (context, index) {
                 final product = orderEntity.orderProducts[index];
                 return ListTile(
-                  leading: Image.network(
-                    product.imageUrl,
-                    width: 50,
-                    height: 50,
-                    fit: BoxFit.cover,
+                  leading: CachedNetworkImage(
+                    imageUrl: product.imageUrl,
+                    placeholder:
+                        (context, url) => SizedBox(
+                          width: 24,
+                          height: 24,
+                          child: const CircularProgressIndicator(),
+                        ),
+                    errorWidget:
+                        (context, url, error) => const Icon(Icons.error),
                   ),
                   title: Text(product.name),
                   subtitle: Text(
@@ -75,7 +110,9 @@ class OrderItem extends StatelessWidget {
                   trailing: Text(
                     '\$${(product.price * product.quantity).toStringAsFixed(2)}',
                     style: const TextStyle(
-                        fontWeight: FontWeight.bold, color: Colors.green),
+                      fontWeight: FontWeight.bold,
+                      color: Colors.green,
+                    ),
                   ),
                 );
               },

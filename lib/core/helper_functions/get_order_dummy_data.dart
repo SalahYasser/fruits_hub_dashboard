@@ -1,3 +1,4 @@
+import 'package:fruits_hub_dashboard/core/enums/order_enum.dart';
 import 'package:fruits_hub_dashboard/features/orders/domain/entities/data/order_entity.dart';
 import '../../features/orders/domain/entities/data/order_product_entity.dart';
 import '../../features/orders/domain/entities/data/shipping_address_entity.dart';
@@ -51,5 +52,6 @@ OrderEntity getDummyOrder() {
     shippingAddressModel: shippingAddress,
     orderProducts: orderProducts,
     paymentMethod: 'Cash',
+    status: OrderEnum.pending,
   );
 }
