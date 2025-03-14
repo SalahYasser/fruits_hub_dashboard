@@ -8,36 +8,9 @@ import 'package:fruits_hub_dashboard/features/orders/domain/repos/orders_repo.da
 import 'package:get_it/get_it.dart';
 import '../repos/product_repo/products_repo.dart';
 import '../repos/product_repo/products_repo_impl.dart';
-import 'fire_storage.dart';
 import 'firestore_service.dart';
 
 final getIt = GetIt.instance;
-
-// void setupGetIt() {
-//
-//   // getIt.registerSingleton<StoarageService>(SupabaseStoargeService());
-//   // getIt.registerSingleton<DatabaseService>(FireStoreService());
-//
-//   // getIt.registerSingleton<StorageService>(FireStorage());
-//
-//   getIt.registerSingleton<StorageService>(SupabaseStorageService());
-//
-//   getIt.registerSingleton<ImagesRepo>(
-//     ImagesRepoImpl(getIt.get<StorageService>()),
-//   );
-//
-//
-//   getIt.registerSingleton<DataBaseService>(FireStoreService());
-//
-//   getIt.registerSingleton<ProductsRepo>(
-//     ProductsRepoImpl(getIt.get<DataBaseService>()),
-//   );
-//
-//
-//   getIt.registerSingleton<OrdersRepo>(
-//     OrdersRepoImpl(getIt.get<DataBaseService>()),
-//   );
-// }
 
 void setupGetIt() {
 

@@ -12,8 +12,8 @@ import 'firebase_options.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
-  // await SupabaseStorageService.initSupabase();
-  // await SupabaseStorageService.createBuckets(kBucketName);
+  await SupabaseStorageService.initSupabase();
+  await SupabaseStorageService.createBuckets(kBucketName);
 
   Bloc.observer = CustomBlocObserver();
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);

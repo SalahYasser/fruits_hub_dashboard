@@ -41,10 +41,6 @@ class SupabaseStorageService implements StorageService {
         .from(kBucketName)
         .upload('$path/$fileName.$extension', file);
 
-    final String publicUrl = _supabase.client.storage
-        .from(kBucketName)
-        .getPublicUrl('$path/$fileName.$extension');
-
     return result;
   }
 }
