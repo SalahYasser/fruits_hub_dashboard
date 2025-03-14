@@ -1,20 +1,19 @@
 import 'package:flutter/material.dart';
-import 'package:fruits_hub_dashboard/features/orders/data/models/order_model.dart';
+import 'package:fruits_hub_dashboard/features/orders/domain/entities/data/order_entity.dart';
 import 'package:fruits_hub_dashboard/features/orders/presentation/views/widgets/order_item.dart';
-
 import '../../../../../core/helper_functions/get_order_dummy_data.dart';
 
 class OrdersItemsListView extends StatelessWidget {
-  const OrdersItemsListView({super.key, required this.orderModels});
+  const OrdersItemsListView({super.key, required this.orderEntity});
 
-  final List<OrderModel> orderModels;
+  final List<OrderEntity> orderEntity;
 
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
-      itemCount: orderModels.length,
+      itemCount: orderEntity.length,
       itemBuilder: (context, index) {
-        return OrderItem(orderModel: getDummyOrder());
+        return OrderItem(orderEntity: getDummyOrder());
       },
     );
   }

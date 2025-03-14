@@ -17,7 +17,7 @@ class OrdersViewBody extends StatelessWidget {
           SizedBox(height: 24),
           Expanded(
             child: OrdersItemsListView(
-              orderModels: [
+              orderEntity: [
                 getDummyOrder(),
                 getDummyOrder(),
                 getDummyOrder(),

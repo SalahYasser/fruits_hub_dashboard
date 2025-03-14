@@ -1,6 +1,5 @@
-
 import 'package:fruits_hub_dashboard/features/orders/data/models/shipping_address_model.dart';
-
+import '../../domain/entities/data/order_entity.dart';
 import 'order_product_model.dart';
 
 class OrderModel {
@@ -39,4 +38,12 @@ class OrderModel {
       'paymentMethod': paymentMethod,
     };
   }
+
+  toEntity() => OrderEntity(
+        totalPrice: totalPrice,
+        uId: uId,
+        shippingAddressModel: shippingAddressModel.toEntity(),
+        orderProducts: orderProducts.map((e) => e.toEntity()).toList(),
+        paymentMethod: paymentMethod,
+      );
 }

@@ -1,3 +1,4 @@
+import '../../domain/entities/data/order_product_entity.dart';
 
 class OrderProductModel {
   final String name;
@@ -14,7 +15,8 @@ class OrderProductModel {
     required this.quantity,
   });
 
-  factory OrderProductModel.fromJson(Map<String, dynamic> json) => OrderProductModel(
+  factory OrderProductModel.fromJson(Map<String, dynamic> json) =>
+      OrderProductModel(
         name: json['name'],
         code: json['code'],
         imageUrl: json['imageUrl'],
@@ -23,10 +25,20 @@ class OrderProductModel {
       );
 
   toJson() => {
-        'name': name,
-        'code': code,
-        'imageUrl': imageUrl,
-        'price': price,
-        'quantity': quantity,
-      };
+    'name': name,
+    'code': code,
+    'imageUrl': imageUrl,
+    'price': price,
+    'quantity': quantity,
+  };
+
+  OrderProductEntity toEntity() {
+    return OrderProductEntity(
+      name: name,
+      code: code,
+      imageUrl: imageUrl,
+      price: price,
+      quantity: quantity,
+    );
+  }
 }
