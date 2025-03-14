@@ -32,6 +32,6 @@ void setupGetIt() {
 
 
   getIt.registerSingleton<OrdersRepo>(
-    OrdersRepoImpl(getIt.get<FireStoreService>()),
+    OrdersRepoImpl(getIt.get<DataBaseService>()),
   );
 }

@@ -21,8 +21,12 @@ class OrderModel {
     return OrderModel(
       totalPrice: json['totalPrice'],
       uId: json['uId'],
-      shippingAddressModel: ShippingAddressModel.fromJson(json['shippingAddressModel']),
-      orderProducts: List<OrderProductModel>.from(json['orderProducts'].map((x) => OrderProductModel.fromJson(x))),
+      shippingAddressModel: ShippingAddressModel.fromJson(
+        json['shippingAddressModel'],
+      ),
+      orderProducts: List<OrderProductModel>.from(
+        json['orderProducts'].map((x) => OrderProductModel.fromJson(x)),
+      ),
       paymentMethod: json['paymentMethod'],
     );
   }
@@ -40,10 +44,10 @@ class OrderModel {
   }
 
   toEntity() => OrderEntity(
-        totalPrice: totalPrice,
-        uId: uId,
-        shippingAddressModel: shippingAddressModel.toEntity(),
-        orderProducts: orderProducts.map((e) => e.toEntity()).toList(),
-        paymentMethod: paymentMethod,
-      );
+    totalPrice: totalPrice,
+    uId: uId,
+    shippingAddressModel: shippingAddressModel.toEntity(),
+    orderProducts: orderProducts.map((e) => e.toEntity()).toList(),
+    paymentMethod: paymentMethod,
+  );
 }
