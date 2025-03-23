@@ -26,10 +26,13 @@ class _OrdersViewBodyBlocBuilderState extends State<OrdersViewBodyBlocBuilder> {
   Widget build(BuildContext context) {
     return BlocBuilder<FetchOrdersCubit, FetchOrdersState>(
       builder: (context, state) {
+
         if (state is FetchOrdersSuccess) {
           return OrdersViewBody(orders: state.orders);
+
         } else if (state is FetchOrdersFailure) {
           return CustomErrorWidget(text: state.errMessage);
+
         } else {
           return Skeletonizer(
             child: OrdersViewBody(

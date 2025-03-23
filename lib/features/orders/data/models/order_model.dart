@@ -53,14 +53,13 @@ class OrderModel {
     shippingAddressModel: shippingAddressModel.toEntity(),
     orderProducts: orderProducts.map((e) => e.toEntity()).toList(),
     paymentMethod: paymentMethod,
-    status: fetchStatus(),
+    status: fetchEnum(),
   );
 
-  OrderEnum fetchStatus() {
+  OrderEnum fetchEnum() {
     return OrderEnum.values.firstWhere((e) {
       var enumStatus = e.name.toString();
-      return enumStatus == (status ?? 'Pending');
-    }
-    );
+      return enumStatus == (status ?? 'pending');
+    });
   }
 }
