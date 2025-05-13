@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:bloc/bloc.dart';
 import 'package:fruits_hub_dashboard/features/orders/domain/repos/orders_repo.dart';
 import 'package:meta/meta.dart';
@@ -11,11 +13,12 @@ class FetchOrdersCubit extends Cubit<FetchOrdersState> {
 
   final OrdersRepo ordersRepo;
 
-  void fetchOrders() async {
+  StreamSubscription? _streamSubscription;
 
+  void fetchOrders() {
     emit(FetchOrdersLoading());
 
-    await for (var result in ordersRepo.fetchOrders()) {
+    _streamSubscription = ordersRepo.fetchOrders().listen((result) {
       result.fold(
         (f) {
           emit(FetchOrdersFailure(f.message));
@@ -24,6 +27,12 @@ class FetchOrdersCubit extends Cubit<FetchOrdersState> {
           emit(FetchOrdersSuccess(orders: r));
         },
       );
-    }
+    });
+  }
+
+  @override
+  Future<void> close() {
+    _streamSubscription?.cancel();
+    return super.close();
   }
 }
