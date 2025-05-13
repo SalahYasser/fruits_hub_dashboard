@@ -52,6 +52,6 @@ OrderEntity getDummyOrder() {
     shippingAddressModel: shippingAddress,
     orderProducts: orderProducts,
     paymentMethod: 'Cash',
-    status: OrderEnum.pending,
+    status: OrderStatusEnum.pending,
   );
 }
