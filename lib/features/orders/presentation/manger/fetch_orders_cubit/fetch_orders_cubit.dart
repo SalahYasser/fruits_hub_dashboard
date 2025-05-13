@@ -15,11 +15,7 @@ class FetchOrdersCubit extends Cubit<FetchOrdersState> {
 
     emit(FetchOrdersLoading());
 
-    final failureOrders = await ordersRepo.fetchOrders();
+    ordersRepo.fetchOrders();
 
-    failureOrders.fold(
-      (failure) => emit(FetchOrdersFailure(failure.message)),
-      (orders) => emit(FetchOrdersSuccess(orders: orders)),
-    );
   }
 }

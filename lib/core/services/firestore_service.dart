@@ -56,4 +56,27 @@ class FireStoreService implements DataBaseService {
     var data = await firestore.collection(path).doc(documentId).get();
     return data.exists;
   }
+
+  @override
+  Stream streamData({required String path, Map<String, dynamic>? query}) async*{
+
+      Query<Map<String, dynamic>> data = firestore.collection(path);
+
+      if (query != null) {
+        if (query['orderBy'] != null) {
+          var orderBy = query['orderBy'];
+          var descending = query['descending'];
+          data = data.orderBy(orderBy, descending: descending);
+        }
+
+        if (query['limit'] != null) {
+          var limit = query['limit'];
+          data = data.limit(limit);
+        }
+      }
+
+      await for (var snapshot in data.snapshots()) {
+        yield snapshot.docs.map((e) => e.data()).toList();
+    }
+  }
 }
