@@ -7,7 +7,6 @@ import '../../domain/entities/data/order_entity.dart';
 import '../../domain/repos/orders_repo.dart';
 
 class OrdersRepoImpl implements OrdersRepo {
-
   final DataBaseService dataBaseService;
 
   OrdersRepoImpl(this.dataBaseService);
@@ -15,13 +14,20 @@ class OrdersRepoImpl implements OrdersRepo {
   @override
   Stream<Either<Failure, List<OrderEntity>>> fetchOrders() async* {
     try {
-     final data = await dataBaseService.getData(path: BackendEndpoint.getOrders);
 
-      List<OrderEntity> orders = (data as List<dynamic>)
-          .map<OrderEntity>((e) => OrderModel.fromJson(e).toEntity())
-          .toList();
+      await for (var data in dataBaseService.streamData(
+        path: BackendEndpoint.getOrders,
+      )) {
 
-      yield Right(orders);
+        dataBaseService.streamData(path: BackendEndpoint.getOrders);
+
+        List<OrderEntity> orders =
+            (data as List<dynamic>)
+                .map<OrderEntity>((e) => OrderModel.fromJson(e).toEntity())
+                .toList();
+
+        yield Right(orders);
+      }
     } catch (e) {
       yield Left(ServerFailure('Failed to fetch orders'));
     }
