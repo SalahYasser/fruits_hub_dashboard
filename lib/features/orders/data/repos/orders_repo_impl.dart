@@ -18,9 +18,6 @@ class OrdersRepoImpl implements OrdersRepo {
       await for (var data in dataBaseService.streamData(
         path: BackendEndpoint.getOrders,
       )) {
-
-        dataBaseService.streamData(path: BackendEndpoint.getOrders);
-
         List<OrderEntity> orders =
             (data as List<dynamic>)
                 .map<OrderEntity>((e) => OrderModel.fromJson(e).toEntity())
