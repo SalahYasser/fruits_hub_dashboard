@@ -1,4 +1,5 @@
 import 'package:dartz/dartz.dart';
+import 'package:fruits_hub_dashboard/core/enums/order_enum.dart';
 import 'package:fruits_hub_dashboard/core/services/database_service.dart';
 import 'package:fruits_hub_dashboard/features/orders/data/models/order_model.dart';
 import '../../../../core/errors/failures.dart';
@@ -14,7 +15,6 @@ class OrdersRepoImpl implements OrdersRepo {
   @override
   Stream<Either<Failure, List<OrderEntity>>> fetchOrders() async* {
     try {
-
       await for (var data in dataBaseService.streamData(
         path: BackendEndpoint.getOrders,
       )) {
@@ -28,5 +28,15 @@ class OrdersRepoImpl implements OrdersRepo {
     } catch (e) {
       yield Left(ServerFailure('Failed to fetch orders'));
     }
+  }
+
+  @override
+  Future<Either<Failure, void>> updateOrder(
+    OrderStatusEnum orderStatusEnum,
+    String orderId,
+  ) {
+
+    // TODO: implement updateOrder
+    throw UnimplementedError();
   }
 }
