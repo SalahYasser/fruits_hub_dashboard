@@ -9,7 +9,7 @@ import '../../domain/repos/orders_repo.dart';
 class OrdersView extends StatelessWidget {
   const OrdersView({super.key});
 
-  static const String routeName = 'orders';
+  static const routeName = 'orders';
 
   @override
   Widget build(BuildContext context) {
@@ -17,7 +17,7 @@ class OrdersView extends StatelessWidget {
       create: (context) => FetchOrdersCubit(getIt.get<OrdersRepo>()),
       child: Scaffold(
         appBar: buildAppBar('Orders'),
-        body: OrdersViewBodyBlocBuilder(),
+        body: const OrdersViewBodyBlocBuilder(),
       ),
     );
   }

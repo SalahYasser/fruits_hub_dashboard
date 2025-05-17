@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:fruits_hub_dashboard/features/orders/domain/entities/data/order_entity.dart';
 import 'package:fruits_hub_dashboard/features/orders/presentation/views/widgets/order_item.dart';
-import '../../../../../core/helper_functions/get_order_dummy_data.dart';
 
 class OrdersItemsListView extends StatelessWidget {
   const OrdersItemsListView({super.key, required this.orderEntity});
@@ -13,7 +12,7 @@ class OrdersItemsListView extends StatelessWidget {
     return ListView.builder(
       itemCount: orderEntity.length,
       itemBuilder: (context, index) {
-        return OrderItem(orderEntity: getDummyOrder());
+        return OrderItem(orderEntity: orderEntity[index]);
       },
     );
   }
