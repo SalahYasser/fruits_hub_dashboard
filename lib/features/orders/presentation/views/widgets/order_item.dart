@@ -48,7 +48,7 @@ class OrderItem extends StatelessWidget {
                   ),
                   child: Text(
                     orderEntity.status.name,
-                    style: const TextStyle(color: Colors.white, fontSize: 12),
+                    style: const TextStyle(color: Colors.white, fontSize: 14),
                   ),
                 ),
               ],
@@ -111,6 +111,7 @@ class OrderItem extends StatelessWidget {
                     '\$${(product.price * product.quantity).toStringAsFixed(2)}',
                     style: const TextStyle(
                       fontWeight: FontWeight.bold,
+                      fontSize: 16,
                       color: Colors.green,
                     ),
                   ),
