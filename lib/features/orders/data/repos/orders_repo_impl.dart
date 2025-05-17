@@ -34,9 +34,16 @@ class OrdersRepoImpl implements OrdersRepo {
   Future<Either<Failure, void>> updateOrder(
     OrderStatusEnum orderStatusEnum,
     String orderId,
-  ) {
-
-    // TODO: implement updateOrder
-    throw UnimplementedError();
+  ) async {
+    try {
+      await dataBaseService.updateData(
+        data: {'status': orderStatusEnum.name},
+        path: BackendEndpoint.updateOrders,
+        documentId: orderId,
+      );
+      return Future.value(Right(null));
+    } catch (e) {
+      return Future.value(Left(ServerFailure('Failed to update order')));
+    }
   }
 }

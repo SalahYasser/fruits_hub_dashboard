@@ -51,32 +51,46 @@ class FireStoreService implements DataBaseService {
   }
 
   @override
-  Future<bool> checkIfDataExists(
-      {required String path, required String documentId}) async {
+  Future<bool> checkIfDataExists({
+    required String path,
+    required String documentId,
+  }) async {
     var data = await firestore.collection(path).doc(documentId).get();
     return data.exists;
   }
 
   @override
-  Stream streamData({required String path, Map<String, dynamic>? query}) async*{
+  Stream streamData({
+    required String path,
+    Map<String, dynamic>? query,
+  }) async* {
+    Query<Map<String, dynamic>> data = firestore.collection(path);
 
-      Query<Map<String, dynamic>> data = firestore.collection(path);
-
-      if (query != null) {
-        if (query['orderBy'] != null) {
-          var orderBy = query['orderBy'];
-          var descending = query['descending'];
-          data = data.orderBy(orderBy, descending: descending);
-        }
-
-        if (query['limit'] != null) {
-          var limit = query['limit'];
-          data = data.limit(limit);
-        }
+    if (query != null) {
+      if (query['orderBy'] != null) {
+        var orderBy = query['orderBy'];
+        var descending = query['descending'];
+        data = data.orderBy(orderBy, descending: descending);
       }
 
-      await for (var snapshot in data.snapshots()) {
-        yield snapshot.docs.map((e) => e.data()).toList();
+      if (query['limit'] != null) {
+        var limit = query['limit'];
+        data = data.limit(limit);
+      }
     }
+
+    await for (var snapshot in data.snapshots()) {
+      yield snapshot.docs.map((e) => e.data()).toList();
+    }
+  }
+
+  @override
+  Future<void> updateData({
+    required String path,
+    required Map<String, dynamic> data,
+    String? documentId,
+  }) async {
+
+    await firestore.collection(path).doc(documentId).update(data);
   }
 }
