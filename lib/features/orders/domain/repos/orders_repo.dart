@@ -7,6 +7,8 @@ abstract class OrdersRepo {
 
   Stream<Either<Failure, List<OrderEntity>>> fetchOrders();
 
-  Future<Either<Failure, void>> updateOrder(
-    OrderStatusEnum orderStatusEnum, String orderId);
+  Future<Either<Failure, void>> updateOrder({
+    required OrderStatusEnum orderStatusEnum,
+    required String orderId,
+  });
 }

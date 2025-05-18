@@ -31,10 +31,10 @@ class OrdersRepoImpl implements OrdersRepo {
   }
 
   @override
-  Future<Either<Failure, void>> updateOrder(
-    OrderStatusEnum orderStatusEnum,
-    String orderId,
-  ) async {
+  Future<Either<Failure, void>> updateOrder({
+    required OrderStatusEnum orderStatusEnum,
+    required String orderId,
+  }) async {
     try {
       await dataBaseService.updateData(
         data: {'status': orderStatusEnum.name},
