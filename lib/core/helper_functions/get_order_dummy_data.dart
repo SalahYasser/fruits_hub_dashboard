@@ -47,6 +47,7 @@ OrderEntity getDummyOrder() {
 
   // Create and return the OrderModel
   return OrderEntity(
+    orderId: 'order123',
     totalPrice: totalPrice,
     uId: 'user123',
     shippingAddressModel: shippingAddress,
